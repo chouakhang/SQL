@@ -27,22 +27,30 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
+#For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
+
+#Use a SELECT statement to order the items by price.
 SELECT SUM(price)
 FROM superstore;
 
+#Show a statistic about the MAXimum item prices.
 SELECT MAX(price)
 FROM superstore;
 
+#Show a statistic about the MINimum item prices.
 SELECT MIN(price)
 FROM superstore;
 
+#Show a statistic about the Average item prices.
 SELECT AVG(price)
 FROM superstore;
 
+#Show a statistic about the price for items in the category of "Kitchen Supplies".
 SELECT MAX(price), category, "Kitchen Supplies"
 FROM superstore
 GROUP BY category;
 
+#Use a SELECT statement to order the items by average rating, item name, ID and category.
 SELECT SUM(average_rating), item_name, item_id, category
 FROM superstore
 GROUP BY item_id;
