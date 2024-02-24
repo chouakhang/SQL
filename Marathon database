@@ -1,0 +1,59 @@
+#This project utilizes the following Marathon data:
+
+CREATE TABLE marathon (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+   participant_name TEXT,
+   previous_experience TEXT,
+   completion_fraction REAL);
+
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Sadie Hawkins", "yes", 1);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Brandon Flowers", "no", 0.241);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Michael Scott", "no", 0.804);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Karamo Brown", "yes", 0.9512);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Antoni Porowski", "yes", 0.640);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Rajnighanda Kapoor", "no", 1);
+
+#For this project, I used SQL to query the marathon database to get information about participants who completed the marathon.
+
+#Use the SELECT query to find the participants who completed the marathon.
+SELECT participant_name
+,completion_fraction*100 AS complete_percent
+FROM marathon;
+
+#Use the select query to find an individual participant.
+SELECT participant_name
+,completion_fraction*100 as completion_percent
+FROM marathon
+WHERE participant_name="Karamo Brown";
+
+#Show participants completion based on a round number.
+SELECT participant_name
+,ROUND(completion_fraction*100) as completion_percent
+FROM marathon
+WHERE participant_name="Karamo Brown";
+
+#Show a single participant's completion to the nearest tenths.
+SELECT participant_name
+,ROUND(completion_fraction*100,1) as completion_percent
+FROM marathon
+WHERE participant_name="Karamo Brown";
+
+#Use the select query to find participant's completion percent to the nearest tenth.
+SELECT participant_name
+,ROUND(completion_fraction*100,1) as completion_percent
+FROM marathon;
+
+#Show all the participants who's marathon completion in a percentage form.
+SELECT COUNT(*), 
+CASE WHEN completion_fraction >=.75 THEN "75%+" 
+WHEN completion_fraction >=.5 THEN "50%+" 
+WHEN completion_fraction >=.25 THEN "25%+" 
+ELSE "Under 25%" END AS "quarter_completed" 
+FROM marathon 
+GROUP BY quarter_completed;
